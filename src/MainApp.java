@@ -7,8 +7,8 @@ public class MainApp {
     public static void main(String[] args) {
         PhoneManager phoneManager = new PhoneManager();
         Scanner scanner = new Scanner(System.in);
-
         int choice;
+
         do {
             System.out.println("\nMENU CHỨC NĂNG:");
             System.out.println("1. Thêm mới");
@@ -26,10 +26,7 @@ public class MainApp {
                     break;
 
                 case 2:
-                    // Chức năng xóa
-                    System.out.print("Nhập ID điện thoại muốn xóa: ");
-                    String id = scanner.nextLine();
-                    phoneManager.deletePhoneById(id);
+                    System.out.println("Chức năng xóa chưa triển khai.");
                     break;
 
                 case 3:
