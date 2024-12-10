@@ -1,5 +1,7 @@
 import controller.PhoneManager;
+import model.Phone;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class MainApp {
@@ -30,12 +32,15 @@ public class MainApp {
                     break;
 
                 case 3:
-                    // Hiển thị danh sách điện thoại
                     phoneManager.displayPhones();
                     break;
 
                 case 4:
-                    System.out.println("Chức năng tìm kiếm chưa triển khai.");
+                    // Chức năng tìm kiếm
+                    System.out.print("Nhập từ khóa tìm kiếm (ID hoặc Tên điện thoại): ");
+                    String keyword = scanner.nextLine();
+                    List<Phone> results = phoneManager.searchPhones(keyword);
+                    phoneManager.displaySearchResults(results);
                     break;
 
                 case 5:
