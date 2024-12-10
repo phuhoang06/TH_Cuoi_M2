@@ -10,10 +10,12 @@ import java.util.ArrayList;
 
 public class CSVUtils {
 
-    // Đọc dữ liệu từ file CSV và trả về danh sách điện thoại
+    private static final String FILE_PATH = "mobiles.csv";
+
+    // Đọc dữ liệu từ file CSV
     public static List<Phone> readFromCSV() {
         List<Phone> phones = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader("phones.csv"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
@@ -29,18 +31,18 @@ public class CSVUtils {
         return phones;
     }
 
-    // Ghi danh sách điện thoại vào file CSV
+    // Ghi dữ liệu vào file CSV
     public static void writeToCSV(List<Phone> phoneList) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("phones.csv"))) {
-            writer.write("Type,ID,Name,Price,Quantity,Manufacturer,Warranty Period/Warranty Scope/Country/Status\n");
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
             for (Phone phone : phoneList) {
                 if (phone instanceof OfficialPhone) {
                     OfficialPhone officialPhone = (OfficialPhone) phone;
-                    writer.write("Official," + officialPhone.getId() + "," + officialPhone.getName() + "," + officialPhone.getPrice() + "," + officialPhone.getQuantity() + "," + officialPhone.getManufacturer() + "," + officialPhone.getWarrantyPeriod() + "," + officialPhone.getWarrantyScope() + "\n");
+                    writer.write("Official," + officialPhone.getId() + "," + officialPhone.getName() + "," + officialPhone.getPrice() + "," + officialPhone.getQuantity() + "," + officialPhone.getManufacturer() + "," + officialPhone.getWarrantyPeriod() + "," + officialPhone.getWarrantyScope());
                 } else if (phone instanceof ImportedPhone) {
                     ImportedPhone importedPhone = (ImportedPhone) phone;
-                    writer.write("Imported," + importedPhone.getId() + "," + importedPhone.getName() + "," + importedPhone.getPrice() + "," + importedPhone.getQuantity() + "," + importedPhone.getManufacturer() + "," + importedPhone.getCountry() + "," + importedPhone.getStatus() + "\n");
+                    writer.write("Imported," + importedPhone.getId() + "," + importedPhone.getName() + "," + importedPhone.getPrice() + "," + importedPhone.getQuantity() + "," + importedPhone.getManufacturer() + "," + importedPhone.getCountry() + "," + importedPhone.getStatus());
                 }
+                writer.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
