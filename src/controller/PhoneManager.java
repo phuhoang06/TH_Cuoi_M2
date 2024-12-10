@@ -3,6 +3,7 @@ package controller;
 import model.Phone;
 import storage.CSVUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -64,6 +65,32 @@ public class PhoneManager {
             System.out.println(phone.getDetails());
         }
     }
+
+    // Chức năng tìm kiếm gần đúng theo ID hoặc Tên điện thoại
+    public List<Phone> searchPhones(String keyword) {
+        List<Phone> result = new ArrayList<>();
+        for (Phone phone : phoneList) {
+            // Kiểm tra từ khóa có trong ID hoặc Tên điện thoại (không phân biệt hoa thường)
+            if (phone.getId().toLowerCase().contains(keyword.toLowerCase()) ||
+                    phone.getName().toLowerCase().contains(keyword.toLowerCase())) {
+                result.add(phone);
+            }
+        }
+        return result;
+    }
+
+    // Hiển thị danh sách tìm kiếm
+    public void displaySearchResults(List<Phone> results) {
+        if (results.isEmpty()) {
+            System.out.println("Không tìm thấy điện thoại nào phù hợp với từ khóa.");
+        } else {
+            System.out.println("Kết quả tìm kiếm:");
+            for (Phone phone : results) {
+                System.out.println(phone.getDetails());
+            }
+        }
+    }
+
 }
 
 
