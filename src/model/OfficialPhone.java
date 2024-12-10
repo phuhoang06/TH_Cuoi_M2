@@ -1,10 +1,9 @@
 package model;
 
 public class OfficialPhone extends Phone {
-    private int warrantyPeriod; // Thời gian bảo hành (tính theo tháng)
+    private int warrantyPeriod; // Thời gian bảo hành (tháng)
     private String warrantyScope; // Phạm vi bảo hành ("Toan Quoc" hoặc "Quoc Te")
 
-    // Constructor
     public OfficialPhone(String id, String name, double price, int quantity, String manufacturer, int warrantyPeriod, String warrantyScope) {
         super(id, name, price, quantity, manufacturer);
         this.warrantyPeriod = warrantyPeriod;
@@ -28,11 +27,20 @@ public class OfficialPhone extends Phone {
         this.warrantyScope = warrantyScope;
     }
 
-    // Override phương thức getDetails từ lớp cha Phone
+    // Override phương thức toString
     @Override
-    public String getDetails() {
-        return super.toString() +
+    public String toString() {
+        return "ID: " + getId() +
+                ", Tên: " + getName() +
+                ", Giá: " + getPrice() +
+                ", Số lượng: " + getQuantity() +
+                ", Nhà sản xuất: " + getManufacturer() +
                 ", Thời gian bảo hành: " + warrantyPeriod + " tháng" +
                 ", Phạm vi bảo hành: " + warrantyScope;
+    }
+//IDE đề xuất :))
+    @Override
+    public String getDetails() {
+        return "";
     }
 }

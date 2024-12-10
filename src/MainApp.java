@@ -1,7 +1,5 @@
 import controller.PhoneManager;
-import model.Phone;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class MainApp {
@@ -20,30 +18,35 @@ public class MainApp {
             System.out.println("5. Thoát");
             System.out.print("Chọn chức năng: ");
             choice = scanner.nextInt();
-            scanner.nextLine(); // Đọc bỏ dòng newline
+            scanner.nextLine(); // Đọc bỏ ký tự xuống dòng
 
             switch (choice) {
                 case 1:
-                    System.out.println("Chức năng thêm mới chưa triển khai.");
+                    // Thêm mới điện thoại
+                    phoneManager.addNewPhone();
                     break;
 
                 case 2:
-                    System.out.println("Chức năng xóa chưa triển khai.");
+                    // Xóa điện thoại
+                    System.out.print("Nhập ID điện thoại muốn xóa: ");
+                    String idToDelete = scanner.nextLine();
+                    phoneManager.deletePhoneById(idToDelete);
                     break;
 
                 case 3:
+                    // Xem danh sách điện thoại
                     phoneManager.displayPhones();
                     break;
 
                 case 4:
-                    // Chức năng tìm kiếm
+                    // Tìm kiếm điện thoại
                     System.out.print("Nhập từ khóa tìm kiếm (ID hoặc Tên điện thoại): ");
                     String keyword = scanner.nextLine();
-                    List<Phone> results = phoneManager.searchPhones(keyword);
-                    phoneManager.displaySearchResults(results);
+                    phoneManager.displaySearchResults(phoneManager.searchPhones(keyword));
                     break;
 
                 case 5:
+                    // Thoát chương trình
                     System.out.println("Thoát chương trình.");
                     break;
 

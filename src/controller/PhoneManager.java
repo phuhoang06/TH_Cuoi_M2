@@ -100,7 +100,7 @@ public class PhoneManager {
         } else {
             System.out.println("Danh sách điện thoại:");
             for (Phone phone : phoneList) {
-                System.out.println(phone.getDetails());
+                System.out.println(phone.toString()); // Sử dụng toString() để hiển thị thông tin
             }
         }
     }
@@ -144,32 +144,35 @@ public class PhoneManager {
             System.out.println(e.getMessage());
         }
     }
-
-    // Chức năng tìm kiếm gần đúng theo ID hoặc Tên điện thoại
+// tìm kiếm
     public List<Phone> searchPhones(String keyword) {
         List<Phone> result = new ArrayList<>();
+        if (keyword == null || keyword.trim().isEmpty()) {
+            System.out.println("Từ khóa tìm kiếm không được để trống.");
+            return result;
+        }
+
         for (Phone phone : phoneList) {
-            // Kiểm tra từ khóa có trong ID hoặc Tên điện thoại (không phân biệt hoa thường)
+            // Kiểm tra từ khóa có xuất hiện trong ID hoặc Tên điện thoại (không phân biệt hoa thường)
             if (phone.getId().toLowerCase().contains(keyword.toLowerCase()) ||
                     phone.getName().toLowerCase().contains(keyword.toLowerCase())) {
                 result.add(phone);
             }
         }
+
         return result;
     }
 
-    // Hiển thị danh sách tìm kiếm
     public void displaySearchResults(List<Phone> results) {
         if (results.isEmpty()) {
             System.out.println("Không tìm thấy điện thoại nào phù hợp với từ khóa.");
         } else {
             System.out.println("Kết quả tìm kiếm:");
             for (Phone phone : results) {
-                System.out.println(phone.getDetails());
+                System.out.println(phone.toString()); // Sử dụng phương thức toString để hiển thị thông tin
             }
         }
     }
-
 }
 
 
